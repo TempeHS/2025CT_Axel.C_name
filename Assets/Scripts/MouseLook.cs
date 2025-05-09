@@ -4,49 +4,18 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float sensitivity = 1.5f;
-    public float smoothing = 1.5f; 
+public float rotationSpeed = 600f;
 
-    private float xMousePos;
-    private float smoothedMousePos;
+void Start()
+{
+    Cursor.lockState = CursorLockMode.Locked;
+    Cursor.visible = false;
+}
+    void Update() {
+        // Get mouse input
+        float horizontalInput = Input.GetAxis("Mouse X");
 
-    private float currentLookingPos;
-
-
-    void start ()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        GetInput();
-        ModifyInput();
-        MovePlayer();
-    }
-
-
-    void GetInput()
-    {
-        xMousePos = Input.GetAxisRaw("Mouse X");
-
-    }
-
-    void ModifyInput()
-    {
-        xMousePos *= sensitivity * smoothing;
-        smoothedMousePos = Mathf.Lerp(smoothedMousePos, xMousePos, 1f / smoothing);
-
-
-    }
-
-    void MovePlayer()
-    {
-        currentLookingPos *= smoothedMousePos;
-        transform.localRotation = Quaternion.AngleAxis(currentLookingPos, transform.up); // value 1 is what we are rotating, and value 2 is the axis we are rotating around.
+        // Apply rotation
+        transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
 }
