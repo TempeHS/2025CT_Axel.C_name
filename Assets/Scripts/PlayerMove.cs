@@ -7,6 +7,9 @@ public class PlayerMove : MonoBehaviour
     public float playerSpeed = 10f;
     private CharacterController playerCC;
 
+    public Animator camAnim;
+    private bool isWalking;
+
     private Vector3 inputVector;
     private Vector3 movementVector;
     private float myGravity = -10f;
@@ -22,6 +25,8 @@ public class PlayerMove : MonoBehaviour
     {
         GetInput();
         MovePlayer();
+        CheckIfWalking();
+        camAnim.SetBool("isWalking", isWalking);
     }
 
 
@@ -40,5 +45,17 @@ public class PlayerMove : MonoBehaviour
     {
         playerCC.Move(movementVector * Time.deltaTime);
 
+    }
+
+    void CheckIfWalking () 
+    {
+        if (playerCC.velocity.magnitude > 0.1f) // checking if the player is walking which can be accessed by the "iswalking" variable
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
     }
 }
