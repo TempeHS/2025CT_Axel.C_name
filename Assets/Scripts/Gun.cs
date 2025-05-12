@@ -5,8 +5,11 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
+public AudioSource aud;
     public float range = 20f;
     public float verticalRange = 20f;
+    public float fireRate = 2f;
+    private float nextTimeToFire;
 
     private BoxCollider gunTrigger;
     public EnemyManager enemyManager; //this is just setting a variable of the type "EnemyManager"
@@ -17,9 +20,28 @@ public class Gun : MonoBehaviour
         gunTrigger = GetComponent<BoxCollider>();
         gunTrigger.size = new Vector3(1, verticalRange, range);
         gunTrigger.center = new Vector3(0, 0, range * 0.5f);
+        aud = GetComponent<AudioSource>();
     }
 
+void Update()
+{
+    if (Input.GetMouseButtonDown(0)&& Time.time > nextTimeToFire) // "0" represents left mouse button
+    {
+        Fire();
+        aud.Play();
+    }
+}
 
+void Fire()
+{
+    //damage enemies
+    foreach (var enemy in enemyManager.enemiesInTrigger)
+    {
+        
+    }
+
+    nextTimeToFire = Time.time + fireRate; // reset timer for gun so that fire rate is implemented
+}
 
 
     private void OnTriggerEnter(Collider other)

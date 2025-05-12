@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-public float rotationSpeed = 600f;
+public float rotationSpeed = 1f;
 
 void Start()
 {
@@ -16,6 +16,6 @@ void Start()
         float horizontalInput = Input.GetAxis("Mouse X");
 
         // Apply rotation
-        transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.up, horizontalInput * rotationSpeed);
     }
 }
