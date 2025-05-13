@@ -8,8 +8,10 @@ public class Gun : MonoBehaviour
 public AudioSource aud;
     public float range = 20f;
     public float verticalRange = 20f;
+    public float width = 0.4f;
     public float fireRate = 2f;
     private float nextTimeToFire;
+    public float damage = 2f;
 
     private BoxCollider gunTrigger;
     public EnemyManager enemyManager; //this is just setting a variable of the type "EnemyManager"
@@ -18,7 +20,7 @@ public AudioSource aud;
     void Start()
     {
         gunTrigger = GetComponent<BoxCollider>();
-        gunTrigger.size = new Vector3(1, verticalRange, range);
+        gunTrigger.size = new Vector3(width, verticalRange, range);
         gunTrigger.center = new Vector3(0, 0, range * 0.5f);
         aud = GetComponent<AudioSource>();
     }
@@ -37,7 +39,7 @@ void Fire()
     //damage enemies
     foreach (var enemy in enemyManager.enemiesInTrigger)
     {
-        
+        enemy.TakeDamage(damage);
     }
 
     nextTimeToFire = Time.time + fireRate; // reset timer for gun so that fire rate is implemented
