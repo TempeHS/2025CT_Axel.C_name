@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     public EnemyManager enemyManagerGun; //setting up an enemy manager component within this document only
 
-    private float enemyHealth = 1f;
+    private float enemyHealth = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage) //the reason "damage" is in the brackets is because we are calling the variable from 
+    //the 'gun' document
     {
         enemyHealth -= damage;
     }
