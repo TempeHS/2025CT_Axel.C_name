@@ -13,6 +13,7 @@ public AudioSource aud;
     private float nextTimeToFire;
     public float damage = 2f;
 
+    public LayerMask rayCastLayerMask;
     private BoxCollider gunTrigger;
     public EnemyManager enemyManager; //this is just setting a variable of the type "EnemyManager"
 
@@ -36,10 +37,26 @@ void Update()
 
 void Fire()
 {
+    
+
+
     //damage enemies
     foreach (var enemy in enemyManager.enemiesInTrigger)
     {
-        enemy.TakeDamage(damage);
+        var dir = enemy.transform.position - transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit, range * 1.5f, rayCastLayerMask))
+        {
+            if (hit.transform == enemy.transform)
+            {
+                //damage enemy
+                enemy.TakeDamage(damage);
+
+                //Debug.DrawRay(transform.position, dir, Color.green); //this is a debug for hit detection
+                //Debug.Break();
+            }
+        }
+        
     }
 
     nextTimeToFire = Time.time + fireRate; // reset timer for gun so that fire rate is implemented

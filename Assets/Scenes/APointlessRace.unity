@@ -1689,7 +1689,7 @@ GameObject:
   - component: {fileID: 1077960286}
   - component: {fileID: 1077960288}
   - component: {fileID: 1077960289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1723,12 +1723,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1372d5120584545729b2e3142aa3ca97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aud: {fileID: 0}
+  aud: {fileID: 1077960289}
   range: 20
   verticalRange: 20
   width: 0.4
   fireRate: 2
   damage: 2
+  rayCastLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   enemyManager: {fileID: 554027028}
 --- !u!65 &1077960287
 BoxCollider:
@@ -2070,7 +2073,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.2016268, y: 1.7759086, z: -7.3152275}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 10.418519, z: 8.79729}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185002237}
