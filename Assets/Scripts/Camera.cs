@@ -50,7 +50,6 @@ void Fire()
             if (hit.transform == enemy.transform)
             {
                 //damage enemy
-                enemy.TakeDamage(damage);
 
                 //Debug.DrawRay(transform.position, dir, Color.green); //this is a debug for hit detection
                 //Debug.Break();
