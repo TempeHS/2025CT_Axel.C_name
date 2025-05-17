@@ -2313,7 +2313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1483830681}
   m_Layer: 0
-  m_Name: Enemies
+  m_Name: ObjectsOfInterest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
