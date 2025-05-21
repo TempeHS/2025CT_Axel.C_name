@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     private CharacterController playerCC;
 
     public Animator camAnim;
+    public Animator camspriteAnim;
     private bool isWalking;
 
     private Vector3 inputVector;
@@ -27,6 +28,7 @@ public class PlayerMove : MonoBehaviour
         MovePlayer();
         CheckIfWalking();
         camAnim.SetBool("isWalking", isWalking);
+        camspriteAnim.SetBool("isWalking", isWalking);
     }
 
 
