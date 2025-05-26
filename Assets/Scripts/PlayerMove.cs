@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float playerSpeed = 10f;
+    public float playerSpeed = 8f;
     private CharacterController playerCC;
 
     public Animator camAnim;
