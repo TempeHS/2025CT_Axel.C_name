@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour
 
     void GetInput()
     {
-        inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f , Input.GetAxisRaw("Vertical")); // This is getting the position of the player and logging it in the vector 3 variable that we created
+        inputVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")); // This is getting the position of the player and logging it in the vector 3 variable that we created
         inputVector.Normalize(); // This allows for diagonal movement by normalising or averaging the x and z points of movement
         inputVector = transform.TransformDirection(inputVector); // This makes the player move in whichever direction it is facing rather than having "forwards" as a fixed direction
 
@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void CheckIfWalking () 
+    void CheckIfWalking()
     {
         if (playerCC.velocity.magnitude > 0.1f) // checking if the player is walking which can be accessed by the "iswalking" variable
         {
@@ -60,4 +60,13 @@ public class PlayerMove : MonoBehaviour
             isWalking = false;
         }
     }
+    
+    void OnTriggerEnter (Collider other) 
+    {
+        if (other.gameObject.CompareTag("Van")) 
+        {
+        other.gameObject.SetActive(false);
+        }
+    }
+
 }
