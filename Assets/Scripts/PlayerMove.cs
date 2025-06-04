@@ -61,11 +61,11 @@ public class PlayerMove : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter (Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.CompareTag("Van")) 
         {
-        other.gameObject.SetActive(false);
+        Destroy(other.gameObject);
         }
     }
 

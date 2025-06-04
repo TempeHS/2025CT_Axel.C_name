@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
-public AudioSource aud;
+    public AudioSource aud;
     public float range = 20f;
     public float verticalRange = 20f;
     public float width = 0.4f;
