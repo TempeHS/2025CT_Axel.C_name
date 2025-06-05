@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 inputVector;
     private Vector3 movementVector;
     private float myGravity = -10f;
+    public TextMeshProUGUI vanText;
 
     // Start is called before the first frame update
     void Start()
@@ -60,12 +62,16 @@ public class PlayerMove : MonoBehaviour
             isWalking = false;
         }
     }
-    
-    private void OnTriggerEnter(Collider other) 
+
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Van")) 
+        if (other.gameObject.CompareTag("Van"))
         {
-        Destroy(other.gameObject);
+            vanText.text = "Press E to deposit footage";
+        }
+        else
+        {
+            vanText.text = "  ";
         }
     }
 
