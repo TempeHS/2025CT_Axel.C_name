@@ -47,13 +47,13 @@ void Fire()
         RaycastHit hit;
         if (Physics.Raycast(transform.position, dir, out hit, range * 1.5f, rayCastLayerMask))
         {
-            if (hit.transform == enemy.transform)
-            {
-                //damage enemy
-
-                //Debug.DrawRay(transform.position, dir, Color.green); //this is a debug for hit detection
-                //Debug.Break();
-            }
+                if (hit.transform == enemy.transform)
+                {
+                    //damage enemy
+                    
+                    //Debug.DrawRay(transform.position, dir, Color.green); //this is a debug for hit detection
+                    //Debug.Break();
+                }
         }
         
     }

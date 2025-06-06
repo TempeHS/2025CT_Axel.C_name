@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         playerCC = GetComponent<CharacterController>();
+        vanText.text = "  ";
     }
 
     // Update is called once per frame
@@ -68,11 +69,17 @@ public class PlayerMove : MonoBehaviour
         if (other.gameObject.CompareTag("Van"))
         {
             vanText.text = "Press E to deposit footage";
-        }
-        else
-        {
-            vanText.text = "  ";
+            if (Input.GetKeyDown("e"))
+            {
+                Debug.Log("space key was pressed"); 
+            }
         }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        vanText.text = "  ";
+    }
+    
 
 }
