@@ -16,8 +16,11 @@ public class PlayerMove : MonoBehaviour
     private Vector3 movementVector;
     private float myGravity = -10f;
     public TextMeshProUGUI vanText;
+    public TextMeshProUGUI vanReport;
+    private bool vanReportStatus = false;
+    private bool isNearVan = false;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update 
     void Start()
     {
         playerCC = GetComponent<CharacterController>();
@@ -30,8 +33,11 @@ public class PlayerMove : MonoBehaviour
         GetInput();
         MovePlayer();
         CheckIfWalking();
+        CheckIfVanReportAvailable();
+        DisplayVanReport();
         camAnim.SetBool("isWalking", isWalking);
         camspriteAnim.SetBool("isWalking", isWalking);
+        
     }
 
 
@@ -64,21 +70,39 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    void DisplayVanReport()
+    {
+        if (vanReportStatus == true)
+        {
+            vanReport.text = "You have photographed: " + CameraScripty.bodyCount + " bodies.";
+        }
+        else
+        {
+            vanReport.text = " ";
+        }
+    }
+    void CheckIfVanReportAvailable()
+    {
+        if (isNearVan && Input.GetKeyDown(KeyCode.E))
+        {
+            vanReportStatus = true;
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Van"))
         {
-            vanText.text = "Press E to deposit footage";
-            if (Input.GetKeyDown("e"))
-            {
-                Debug.Log("space key was pressed"); 
-            }
+            vanText.text = "Press E to deposit footage"; 
+            isNearVan = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
         vanText.text = "  ";
+        isNearVan = false;
+        vanReportStatus = false;
     }
     
 

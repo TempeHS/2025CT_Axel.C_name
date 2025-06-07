@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class CameraScripty : MonoBehaviour
 {
 
     public AudioSource aud;
@@ -12,10 +12,11 @@ public class Gun : MonoBehaviour
     public float fireRate = 2f;
     private float nextTimeToFire;
     public float damage = 2f;
-
     public LayerMask rayCastLayerMask;
     private BoxCollider gunTrigger;
     public EnemyManager enemyManager; //this is just setting a variable of the type "EnemyManager"
+
+    static public float bodyCount;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Gun : MonoBehaviour
         gunTrigger.size = new Vector3(width, verticalRange, range);
         gunTrigger.center = new Vector3(0, 0, range * 0.5f);
         aud = GetComponent<AudioSource>();
+        bodyCount = 0;
     }
 
 void Update()
@@ -50,7 +52,10 @@ void Fire()
                 if (hit.transform == enemy.transform)
                 {
                     //damage enemy
-                    
+                    if (enemy.CompareTag("DeadBody"))
+                    {
+                        bodyCount = bodyCount + 1;
+                    }
                     //Debug.DrawRay(transform.position, dir, Color.green); //this is a debug for hit detection
                     //Debug.Break();
                 }
